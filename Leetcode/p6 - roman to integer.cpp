@@ -1,25 +1,33 @@
-class Solution {
+// Leetcode
+// https://leetcode.com/problems/roman-to-integer/
+class Solution
+{
 public:
-    int romanToInt(string s) {
-        
+    int romanToInt(string s)
+    {
+
         // 1st solution - without hashmap
         int sum = 0;
         string order = "IVXLCDM";
-        int val[7] = {1,5,10,50,100,500,1000};
-        
-        sum +=val[order.find(s[s.length()-1])];
+        int val[7] = {1, 5, 10, 50, 100, 500, 1000};
+
+        sum += val[order.find(s[s.length() - 1])];
         int curr_index = 0, prev_index = 0;
-        for(int i = s.length()-2; i>=0;i--) {
+        for (int i = s.length() - 2; i >= 0; i--)
+        {
             curr_index = order.find(s[i]);
-            prev_index = order.find(s[i+1]);
-            if(prev_index>curr_index) {
-                sum-=val[curr_index];
-            } else {
-                sum+=val[curr_index];
+            prev_index = order.find(s[i + 1]);
+            if (prev_index > curr_index)
+            {
+                sum -= val[curr_index];
+            }
+            else
+            {
+                sum += val[curr_index];
             }
         }
         return sum;
-        
+
         // 2nd solution - with hashmap
         // int sum = 0;
         // unordered_map<char, int> T = {
@@ -40,7 +48,5 @@ public:
         //     }
         // }
         // return sum;
-        
-        
     }
 };
