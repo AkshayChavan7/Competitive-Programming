@@ -1,4 +1,3 @@
-// Leetcode
 // https://leetcode.com/problems/roman-to-integer/
 class Solution
 {
