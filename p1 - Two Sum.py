@@ -2,6 +2,10 @@
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d = defaultdict(lambda: float('inf'))
+
         for i in range(len(nums)):
-            if (target-nums[i]) in nums[i+1:]:
-                return [nums.index(nums[i]), nums[i+1:].index(target-nums[i])+i+1]
+            k = target - nums[i]
+            if d[k] != float('inf'):
+                return [d[k], i]
+            d[nums[i]] = i
