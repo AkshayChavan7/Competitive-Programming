@@ -16,7 +16,7 @@ class Solution:
                     temp[0] = temp[i]
                     temp[i] = t
 
-                    nums[:] = [n for n in nums[:l]+[temp[0]]+sorted(temp[1:])]
+                    nums[:] = [n for n in nums[:l]+[temp[0]]+temp[1:][::-1]]
                     return
 
         nums.sort()
