@@ -42,6 +42,12 @@ print("isEMpty", myStack.empty())
 myStack.push(100)
 myStack.push(110)
 print("top", myStack.topp())
+myStack.pop()
+myStack.pop()
+myStack.pop()
+myStack.pop()
+myStack.pop()
+myStack.pop()
 
 
 
