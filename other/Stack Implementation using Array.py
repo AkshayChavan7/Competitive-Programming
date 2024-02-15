@@ -1,3 +1,4 @@
+# Stack implementation using Array
 class MyStack:
     def __init__(self, size):
         self.size =  size
