@@ -4,9 +4,10 @@
 # [155] Min Stack
 #
 
+
 # @lc code=start
 class MinStack:
-    
+
     def __init__(self):
         self.stck = [(None, None)] * 10000
         self.tp = -1
