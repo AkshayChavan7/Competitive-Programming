@@ -6,32 +6,32 @@
 
 # @lc code=start
 class MinStack:
-
+    
     def __init__(self):
-        self.stck = []
+        self.stck = [(None, None)] * 10000
         self.tp = -1
         self.prevMin = float('inf')
 
+        
+
     def push(self, val: int) -> None:
         self.prevMin = min(self.prevMin, val)
-        self.stck.append((val, self.prevMin))
         self.tp+=1
-     
+        self.stck[self.tp] = (val, self.prevMin)    
+
     def pop(self) -> None:
         if self.tp!=-1:
             self.tp-=1
             top, self.prevMin = self.stck[self.tp]
-            self.stck.pop()
             if self.tp == -1:
-                self.prevMin = float('inf')  
+                self.prevMin = float('inf')
+        
 
     def top(self) -> int:
         top, mn = self.stck[self.tp]
         return top
 
     def getMin(self) -> int:
-        if self.prevMin==float('inf'): return null
-        print("getMIn", self.prevMin)
         return self.prevMin
         
 
