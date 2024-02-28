@@ -11,8 +11,6 @@ class MedianFinder:
         self.maxHeap = [] # lower half of the sorted array
         self.minHeap = [] # upper half of the sorted array
 
-        
-
     def addNum(self, num: int) -> None:
         heappush(self.maxHeap, -num)
 
