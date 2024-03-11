@@ -13,3 +13,6 @@ def binarySearch(arr, key):
 
 arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 print(binarySearch(arr, 100))
+
+# Time Complexity: O(logn)
+# Auxiliary Space Complexity: O(1)
