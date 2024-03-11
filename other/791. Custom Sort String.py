@@ -1,6 +1,6 @@
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        matched, unmatched = [], []
+        matched = []
         freqMap = defaultdict(lambda: 0)
 
         for ch in s: freqMap[ch]+=1
