@@ -179,3 +179,127 @@ print(BFS(a, 'e')) # True
 print(BFS(a, 'z')) # False
 print(BFS(a, 'f')) # True
 print(BFS(None, 'a')) # False
+
+
+# Tree Sum Problems
+'''
+        3
+      /   \
+    11     4
+   /  \      \
+  4    2      1
+'''
+n3 = Node(3)
+n11 = Node(11)
+n4 = Node(4)
+n_4 = Node(4)
+n2 = Node(2)
+n1 = Node(1)
+
+n3.left = n11
+n3.right = n4
+n11.left = n_4
+n11.right = n2
+n4.right = n1
+
+# recursive DFS
+def treeSum(root: Node):
+    if not root: return 0
+    return root.val + treeSum(root.left) + treeSum(root.right)
+print(treeSum(n3)) # 25
+
+# iterative DFS
+def treeSumIterative(root: Node):
+    if not root: return 0
+    sum = 0
+    stack = [root]
+
+    while len(stack)>0:
+        current = stack.pop()
+        sum+=current.val
+        if current.right:stack.append(current.right)
+        if current.left:stack.append(current.left)
+    return sum
+
+print(treeSumIterative(n3)) # 25
+
+# Tree Min Value Problems
+'''
+        3
+      /   \
+    11     4
+   /  \      \
+  4    2      1
+
+min: 1
+'''
+# Recursive DFS
+def minValue(root:Node):
+    if not root: return float('inf')
+    return min(root.val, minValue(root.left), minValue(root.right))
+
+print("Min Value using Recursive DFS: ")
+print(minValue(n3)) # 1
+
+# Iterative DFS
+def minValueIterative(root: Node):
+    if not root: return -1
+    stack = [root]
+    minVal = float('inf')
+    while len(stack)>0:
+        current = stack.pop()
+        minVal = min(minVal, current.val)
+        if current.right: stack.append(current.right)
+        if current.left: stack.append(current.left)
+    return minVal
+
+print("Min Value using Iterative DFS: ")
+print(minValueIterative(n3)) # 1
+
+# Iterative BFS
+def minValueBFS(root: Node):
+    if not root: return -1
+    queue = deque()
+    queue.append(root)
+    minVal = float('inf')
+    while len(queue)>0:
+        current = queue.popleft()
+        minVal = min(minVal, current.val)
+        if current.left: queue.append(current.left)
+        if current.right: queue.append(current.right)
+    return minVal
+
+print("Min Value using Iterative BFS: ")
+print(minValueBFS(n3)) # 1
+
+
+# Maximal Path Sum Problems
+# recursive DFS
+def maxPathSum(root: Node):
+    if not root: return float('-inf')
+    leftSubtreeMaxSum = maxPathSum(root.left)
+    rightSubtreeMaxSum = maxPathSum(root.right)
+    if leftSubtreeMaxSum == float('-inf'):
+        leftSubtreeMaxSum = 0
+    if rightSubtreeMaxSum == float('-inf'):
+        rightSubtreeMaxSum = 0
+    return root.val + max(leftSubtreeMaxSum, rightSubtreeMaxSum)
+
+print("Maximum Path Sum using Recursive DFS: ", maxPathSum(n3))
+
+# recursive DFS - one more apprach
+def maxPathSum(root: Node):
+    if not root: return float('-inf')
+    if root.left == None and root.right == None: return root.val
+    return root.val + max(maxPathSum(root.left), maxPathSum(root.right))
+
+print("Maximum Path Sum using Recursive DFS Approach 2: ", maxPathSum(n3))
+# iterative DFS
+# def maxPathSum(root: Node):
+#     if not root: return float('-inf')
+#     maxSum = 0
+#     stack = [root]
+
+#     while len(stack)>0:
+#         current = stack.pop()
+        
