@@ -68,3 +68,55 @@ def DFS_recursive2(root:Node):
 
 print('Recursive DFS output as list =>')
 print(DFS_recursive2(a))
+
+def BFS_recursive(root: Node):
+    def myBFS(root:Node):
+      if not root: return []
+
+      result = []
+      if root.left: result.append(root.left.val)
+      if root.right: result.append(root.right.val)
+      leftValues = myBFS(root.left) # [d,e]
+      rightValues = myBFS(root.right) # [f]
+      result+=(leftValues+rightValues)
+      return result
+    return [root.val]+myBFS(root)
+print('Recursive BFS output as list =>')
+print(BFS_recursive(a))
+
+# Iterative BFS using Stack
+def BFS(root: Node):
+    if not root: return []
+    result = []
+    stack = [root]
+    while len(stack)>0:
+        current = stack.pop()
+        if current: 
+            if current.right: stack.append(current.right)
+            if current.left: stack.append(current.left)
+            if current.left: 
+                result.append(current.left.val)
+            if current.right: 
+                result.append(current.right.val)
+    return [root.val] + result
+print('Iterative BFS output as list =>')
+print(BFS(a))
+
+# Iterative BFS using Queue
+from collections import deque
+def BFS_queue(root: Node):
+    if not root: return []
+    queue = deque()
+    queue.append(root)
+    result = []
+    while len(queue)>0:
+        current = queue.popleft()
+        result.append(current.val)
+        if current.left: queue.append(current.left)
+        if current.right: queue.append(current.right)
+    return result
+print('Iterative BFS output as list =>')
+print(BFS_queue(a))
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
