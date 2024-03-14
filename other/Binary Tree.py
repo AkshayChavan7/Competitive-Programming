@@ -120,3 +120,62 @@ print(BFS_queue(a))
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
+
+
+# Tree Includes Problems
+'''
+                a
+              /   \
+            b      c
+          /  \       \
+         d    e       f
+
+Target: e
+'''
+
+# recursive
+def DFS(root: Node, key):
+    if not root: return False
+    if root.val == key: return True
+    return DFS(root.left, key) or DFS(root.right, key)
+print('Recursive DFS output => ')
+print(DFS(a, 'e')) # True
+print(DFS(a, 'z')) # False
+print(DFS(a, 'f')) # True
+print(DFS(None, 'a')) # False
+
+# iterative
+
+def DFS_iterative(root: Node, key):
+    if not root: return False
+    stack = [root]
+    while len(stack)>0:
+        current = stack.pop()
+        if current.val == key: return True
+        if current.right: stack.append(current.right)
+        if current.left: stack.append(current.left)
+    return False
+print('Iterative DFS output => ')
+print(DFS_iterative(a, 'e')) # True
+print(DFS_iterative(a, 'z')) # False
+print(DFS_iterative(a, 'f')) # True
+print(DFS_iterative(None, 'a')) # False
+
+# Breadth First Search
+def BFS(root: Node, key):
+    if not root: return False
+    queue = deque()
+    queue.append(root)
+
+    while len(queue)>0:
+        current = queue.popleft()
+        if current.val == key: return True
+        if current.left: queue.append(current.left)
+        if current.right: queue.append(current.right)
+    return False
+
+print('Iterative BFS output => ')
+print(BFS(a, 'e')) # True
+print(BFS(a, 'z')) # False
+print(BFS(a, 'f')) # True
+print(BFS(None, 'a')) # False
